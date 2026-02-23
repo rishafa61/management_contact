@@ -1,32 +1,33 @@
-def melihat_kontak():
-    if kontak:
-        for num, item in enumerate(kontak, start=1):
-            print(f' {num}. {item["nama"]} ({item["No HP"]}, {item["email"]})')
-    else:
-        print("Kontak Kosong")
-        return 1
+class Kontak:
+    def __init__(self):
+        self.kontak = []
 
-def menambah_kontak():
-    nama = input("Nama: ")
-    no_hp = input("Nomer HP: ")
-    email = input("Email: ")
+    def melihat_kontak(self):
+        if self.kontak:
+            for num, item in enumerate(self.kontak, start=1):
+                print(f' {num}. {item["nama"]} ({item["No HP"]}, {item["email"]})')
+        else:
+            print("Kontak Kosong")
+            return 1
 
-    kontak_baru = {'nama': nama, 'No HP': no_hp, 'email': email}
-    kontak.append(kontak_baru)
-    print("Berhasil Ditambahkan")
-def menghapus_kontak():
-    if melihat_kontak() == 1:
-        return
-    else:
-        index_hapus = int(input("Pilih Nomer (1,2,3,4): "))
-        del kontak[index_hapus - 1]
+    def menambah_kontak(self):
+        nama = input("Nama: ")
+        no_hp = input("Nomer HP: ")
+        email = input("Email: ")
 
+        kontak_baru = {'nama': nama, 'No HP': no_hp, 'email': email}
+        self.kontak.append(kontak_baru)
+        print("Berhasil Ditambahkan")
 
-kontak1 = {'nama' : "a", 'No HP' : "02341234123", 'email' : "a@gmail.com"}
-kontak2 = {'nama' : "b", 'No HP' : "02356464445", 'email' : "b@gmail.com"}
-kontak3 = {'nama' : "c", 'No HP' : "01231244123", 'email' : "c@gmail.com"}
+    def menghapus_kontak(self):
+        if self.melihat_kontak() == 1:
+            return
+        else:
+            index_hapus = int(input("Pilih Nomer (1,2,3,4): "))
+            del self.kontak[index_hapus - 1]
 
-kontak = [kontak1, kontak2, kontak3]
+kontak_kantor = Kontak()
+kontak_keluarga = Kontak()
 
 while True:
     print("\nMenu Kontak")
@@ -38,14 +39,14 @@ while True:
     pilihan = input("Pilih Nomer (1,2,3,4): ")
 
     if pilihan == '1':
-        melihat_kontak()
+        kontak_kantor.melihat_kontak()
 
     elif pilihan == '2':
-        menambah_kontak()
+        kontak_kantor.menambah_kontak()
 
     elif pilihan == '3':
         # Menghapus Kontak
-        menghapus_kontak()
+        kontak_kantor.menghapus_kontak()
 
     elif pilihan == '4':
         # Keluar dari kontak
